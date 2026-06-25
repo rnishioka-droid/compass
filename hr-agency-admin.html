@@ -8265,7 +8265,7 @@
       }
       const requests = data.oruiRequests || [];
       document.getElementById("drawerTitle").textContent = "申請";
-      document.getElementById("drawerSubtitle").textContent = "添付ファイル3つ・送信先3名（大類以外）";
+      document.getElementById("drawerSubtitle").textContent = "添付ファイル3つ・送信先1名（大類以外）";
       document.getElementById("drawerBody").innerHTML = `
         <article class="panel">
           <div class="panel-head">
@@ -9381,7 +9381,7 @@
         event.preventDefault();
         if (currentUser() !== "大類") return;
         const form = new FormData(event.target);
-        const recipients = ["recipient1", "recipient2", "recipient3"]
+        const recipients = ["recipient1"]
           .map(name => caName(form.get(name)))
           .filter(Boolean)
           .filter(name => name !== "大類");
