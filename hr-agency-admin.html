@@ -7227,15 +7227,38 @@
     }
 
     function loadCandidateSources() {
-      const saved = localStorage.getItem("recruitOpsCandidateSources");
-      const parsed = saved ? JSON.parse(saved) : [...defaultCandidateSources, ...importedSources];
-      const sources = [...parsed, ...importedSources, "求人Box_D", "ASP", "meta", "Airワーク", "choice-job", "choice-job_保育"]
-        .map(source => String(source).trim())
-        .map(source => source === "エアワーク" ? "Airワーク" : source)
-        .map(source => source === "チョイスJOB" ? "choice-job" : source)
-        .filter(source => source && source !== "ASP+α");
-      return [...new Set(sources)];
-    }
+  const saved = localStorage.getItem("recruitOpsCandidateSources");
+  const parsed = saved ? JSON.parse(saved) : [];
+
+  const sources = [
+    ...defaultCandidateSources,
+    ...parsed,
+    ...importedSources,
+    "求人Box_D",
+    "ASP",
+    "meta",
+    "Airワーク",
+    "choice-job",
+    "choice-job_保育",
+    "indeed_事務"
+  ]
+    .map(source => String(source).trim())
+    .map(source => source === "エアワーク" ? "Airワーク" : source)
+    .map(source => source === "チョイスJOB" ? "choice-job" : source)
+    .filter(source => source && source !== "ASP+α");
+
+  return [...new Set(sources)];
+}
+    //function loadCandidateSources() {
+      //const saved = localStorage.getItem("recruitOpsCandidateSources");
+      //const parsed = saved ? JSON.parse(saved) : [...defaultCandidateSources, ...importedSources];
+     //const sources = [...parsed, ...importedSources, "求人Box_D", "ASP", "meta", "Airワーク", "choice-job", "choice-job_保育"]
+        //.map(source => String(source).trim())
+        //.map(source => source === "エアワーク" ? "Airワーク" : source)
+        //.map(source => source === "チョイスJOB" ? "choice-job" : source)
+        //.filter(source => source && source !== "ASP+α");
+      //return [...new Set(sources)];
+   // }
 
     function saveCandidateSources(sources) {
       localStorage.setItem("recruitOpsCandidateSources", JSON.stringify([...new Set(sources.map(source => source.trim()).filter(Boolean))]));
